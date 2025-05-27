@@ -4,9 +4,9 @@ let renderCounter=0;
 let curLayer = 0;
 
 // change these three lines as appropiate
-let sourceFile = "input_2.jpg";
-let maskFile   = "mask_2.png";
-let outputFile = "output_2.png";
+let sourceFile = "input_3.jpg";
+let maskFile   = "mask_3.png";
+let outputFile = "output_3.png";
 
 function preload() {
   sourceImg = loadImage(sourceFile);
@@ -85,7 +85,7 @@ function draw () {
         //line(x1, y1, x2, y2);
       }
       else {
-        triangle(width/4, height/4, x2, y2, (x2/100)+x2, (y2/100)+y2);
+        triangle(x1, y1, x2, y2, (x2/100)+x2, (y2/100)+y2);
       }
     }
     renderCounter = renderCounter + 1;
