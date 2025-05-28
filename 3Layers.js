@@ -52,18 +52,21 @@ function draw () {
     updatePixels();
   }
   else if (curLayer == 1) {
-    
+
     for(let i=0; i<500; i++) {
       let x1 = random(0, width);
       let y1 = random(0, height);
       let maskData = maskImg.get(x1, y1);
-      if(maskData[1] > 128) {
-        let x2 = x1 + random(-20, 20);
-        let y2 = y1 + random(-20, 20);
-        colorMode(RGB);
+      let x2 = x1 + random(-20, 20);
+      let y2 = y1 + random(-20, 20);
+
+      if(maskData[1] < 128) {
+     
+        colorMode(HSB);
         //stroke(255, 255, 0);
+        fill(color(sourceImg.get(x1, y1)))
         //line(x1, y1, x2, y2);
-        ellipse(x1, y1, x2/100, y2/100)
+        ellipse(x1, y1, 5, 5)
       }
     }
     renderCounter = renderCounter + 1;
