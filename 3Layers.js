@@ -88,7 +88,8 @@ function draw () {
         //line(x1, y1, x2, y2);
       }
       else {
-        triangle(x1, y1, x2, y2, (x2/100)+x2, (y2/100)+y2);
+        quad(x1, y1, x2, y2, x1+0.5, y1+5, x2+5, y2+5)
+        // triangle(x1, y1, x2, y2, (x2/100)+x2, (y2/100)+y2);
       }
     }
     renderCounter = renderCounter + 1;
