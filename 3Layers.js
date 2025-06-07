@@ -4,9 +4,9 @@ let renderCounter=0;
 let curLayer = 0;
 
 // change these three lines as appropiate
-let sourceFile = "input_3.jpg";
-let maskFile   = "mask_3.png";
-let outputFile = "output_3.png";
+let sourceFile = "input_1.jpg";
+let maskFile   = "mask_1.png";
+let outputFile = "output_1.png";
 
 function preload() {
   sourceImg = loadImage(sourceFile);
@@ -27,22 +27,18 @@ function setup () {
 
 function draw () {
   if (curLayer == 0) {
-    let num_lines_to_draw = 40;
-    // get one scanline
+    let num_lines_to_draw = 40; // get one scanline
     for(let j=renderCounter; j<renderCounter+num_lines_to_draw && j<1080; j++) {
       for(let i=0; i<1920; i++) {
+        
         colorMode(RGB);
-        let pixData = sourceImg.get(i, j);
-        // create a color from the values (always RGB)
+        let pixData = sourceImg.get(i, j); // pulls colour from input
         let col = color(pixData);
-        //let maskData = maskImg.get(i, j);
 
-        colorMode(HSB, 360, 100, 100);
-        // draw a "dimmed" version in gray
+        colorMode(HSB, 360, 100, 100); // grayscale
         let h = hue(col);
         let s = saturation(col);
         let b = brightness(col);
-
         let new_brt = map(b, 0, 100, 30, 50);
         let new_col = color(h, 0, new_brt);
         set(i, j, new_col);
@@ -63,10 +59,10 @@ function draw () {
       if(maskData[1] < 128) {
      
         colorMode(HSB);
-        //stroke(255, 255, 0);
         fill(color(sourceImg.get(x1, y1)))
-        //line(x1, y1, x2, y2);
-        ellipse(x1, y1, 5, 5)
+        // RGB values from input now read in HSB
+        rect(x1, y1, 4+(random(-3, 3)), 4+(random(-3, 3))) // varying sizes makes a cobbled texture
+
       }
     }
     renderCounter = renderCounter + 1;
@@ -85,11 +81,11 @@ function draw () {
       stroke(col);
       fill(col);
       if(maskData[1] < 128) {
-        //line(x1, y1, x2, y2);
       }
       else {
         quad(x1, y1, x2, y2, x1+0.5, y1+5, x2+5, y2+5)
-        // triangle(x1, y1, x2, y2, (x2/100)+x2, (y2/100)+y2);
+        ellipse(x1, y1, 4+(random(-3, 3)), 4+(random(-3, 3)))
+        // quads and ellipses together create a fuzzy, feltlike texture
       }
     }
     renderCounter = renderCounter + 1;
